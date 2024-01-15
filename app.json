@@ -15,7 +15,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.hbandaru.sushastrapranali"
     },
     "android": {
       "adaptiveIcon": {
@@ -29,7 +30,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": "307f726b-d7dd-48c8-800a-a03b525b65f0"
+        "projectId": "16c26ec5-f452-4b30-a4b0-8b6d4646c5f1"
       }
     },
     "owner": "hbandaru"
