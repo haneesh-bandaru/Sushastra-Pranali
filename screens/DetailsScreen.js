@@ -47,8 +47,6 @@ const DetailsScreen = ({ navigation }) => {
       Faculty: selectedFaculty,
       Subject: selectedSubject,
     };
-
-    console.log("Acquired Data:", data);
     navigation.navigate("Questions", { formData: data });
   };
 
@@ -172,7 +170,7 @@ const DetailsScreen = ({ navigation }) => {
       {selectedAcademicYear && (
         <Button
           title="Submit"
-          // disabled={!selectedFaculty}
+          disabled={!selectedFaculty}
           mode="elevated"
           // ColorValue="green"
           onPress={handleSubmit}

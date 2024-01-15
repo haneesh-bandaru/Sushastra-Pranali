@@ -4,7 +4,7 @@
     "slug": "sushastra-pranali",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/clgLogo.jpg",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/images/splash.png",
@@ -20,7 +20,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/images/clgLogo.jpg",
         "backgroundColor": "#ffffff"
       },
       "package": "com.hbandaru.sushastrapranali"

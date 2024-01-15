@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import { View, Text, ScrollView } from "react-native";
 import { DefaultTheme, RadioButton } from "react-native-paper";
-import { Button, Card } from "react-native-paper";
+import { Button, Card, Snackbar } from "react-native-paper";
 
 const QuestionsScreen = ({ navigation, route }) => {
+  const [snackbarVisible, setSnackbarVisible] = useState(false);
+  const onDismissSnackBar = () => {
+    setSnackbarVisible(false);
+  };
+
   const formData = route.params?.formData || {};
   const questions = [
     "Knowledge of the Subject",
@@ -28,7 +33,7 @@ const QuestionsScreen = ({ navigation, route }) => {
   const [questionsState, setQuestionsState] = useState(
     Array(questions.length).fill("")
   );
-
+  const allQuestionsAnswered = questionsState.every((state) => state !== "");
   const generateQuestion = (questionNumber) => {
     const state = questionsState[questionNumber - 1];
 
@@ -76,9 +81,7 @@ const QuestionsScreen = ({ navigation, route }) => {
   };
 
   return (
-    <ScrollView
-      style={{ flex: 1, backgroundColor: "#cfbcff" }}
-    >
+    <ScrollView style={{ flex: 1, backgroundColor: "#cfbcff" }}>
       {questions.map((_, index) => generateQuestion(index + 1))}
       <View
         style={{
@@ -99,11 +102,10 @@ const QuestionsScreen = ({ navigation, route }) => {
           }}
           contentStyle={{ flexDirection: "row", alignItems: "center" }}
           onPress={() => {
-            console.log("Back button pressed");
             navigation.navigate("Details");
           }}
         >
-          <Text style={{color:"#381E72"}}>Back</Text>
+          <Text style={{ color: "#381E72" }}>Back</Text>
         </Button>
 
         <Button
@@ -119,14 +121,28 @@ const QuestionsScreen = ({ navigation, route }) => {
           }}
           title="Submit"
           onPress={() => {
-            console.log("Submit button pressed");
-            console.log(printSelectedOptions());
-            navigation.navigate("ThankYou", printSelectedOptions());
+            if (allQuestionsAnswered) {
+              navigation.navigate("ThankYou", printSelectedOptions());
+            } else {
+              // Handle the case where not all questions are answered
+              console.log("Please answer all questions before submitting.");
+              setSnackbarVisible(true);
+            }
           }}
+          disabled={!allQuestionsAnswered}
         >
           <Text>Submit</Text>
         </Button>
       </View>
+
+      {/* Snackbar for displaying error message */}
+      <Snackbar
+        visible={snackbarVisible}
+        onDismiss={onDismissSnackBar}
+        duration={3000} // Adjust the duration as needed
+      >
+        Please answer all questions before submitting.
+      </Snackbar>
     </ScrollView>
   );
 };
