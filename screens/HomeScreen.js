@@ -1,6 +1,6 @@
 import React from "react";
 import { Image, Text, View } from "react-native";
-import logo from "../assets/images/clgLogo.jpg";
+import logo from "../assets/images/clgLogo.png";
 import { Card, Button } from "react-native-paper";
 
 export default function HomeScreen({ navigation }) {
